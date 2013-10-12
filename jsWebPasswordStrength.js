@@ -17,6 +17,15 @@
 function jsWebPasswordStrength(options)
 {
 	var defaults = {
+		/*
+			An array of objects, each defining a break point for how various bit
+			strengths should be rated.
+			in the form:
+			{
+				'bits':[number]//the minimum number of bits to achieve this rating
+				'name':'[name]'//the natural-language output from the rating system
+			}
+		*/
 		bitstrengths:[
 			{
 				'bits':0,
@@ -35,13 +44,26 @@ function jsWebPasswordStrength(options)
 				'name':'ideal'
 			}
 		],
+		/*
+			An object of objects, each defining a test to be applied to the password
+			Currently only supports regular expressions, but in the future will
+			accept functions as well.
+			Should have a meaningful name, since that's what needs to be used
+			when adding and removing them through the interface functions.
+		*/
 		tests:{
 			'minimum length':{
 				'regex':/^.{0,7}$/,
 				'message':'password should be at least 8 characters',
-				'value':-100
+				'value':-10
 			}
 		},
+		/*
+			An object of objects, each defines a regular expression. Each also defines
+			the count of characters this regex matches (used for computing bits per
+			character). Penalties to the final 0-100 score can be applied for missing
+			categories.
+		*/
 		characterCategories:{
 			'lower case letter':{
 				'regex':/[a-z]/,
