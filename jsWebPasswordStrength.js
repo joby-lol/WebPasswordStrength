@@ -1,6 +1,7 @@
 /** @license
-* jsWebPasswordStrength
+* WebPasswordStrength
 * Copyright (c) 2013 Joby Elliott
+* http://go.byjoby.net/WebPasswordStrength
 * 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -13,7 +14,6 @@
 * all copies or substantial portions of the Software.
 */
 
-/* jsWebPasswordStrength @constructor */
 function jsWebPasswordStrength(options) {
 	var defaults = {
 		/*

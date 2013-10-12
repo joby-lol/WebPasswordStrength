@@ -1,29 +1,53 @@
 <!doctype HTML>
 <html>
 <head>
-</head>
-<body>
-	<h1>jsWebPasswordStrength</h1>
-	<h2>Javascript Basic Demo</h2>
-	<p>Demonstrating the data produced by the jsWebPasswordStrength class.</p>
-	<p><input type="password" id="demo-normal-input" /></p>
-	<p id="demo-normal-output"><em>start typing a password above</em></p>
-
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 	<script src="jsWebPasswordStrength.js"></script>
-	<script>
-		$(function(){
-			var p = new jsWebPasswordStrength();
-			var demoNormal = function () {
-				var result = p.test($("#demo-normal-input").val());
-				var output = "";
-				for (var item in result) {
-					output += "<div><strong>"+item+"</strong> "+result[item]+"</div>";
+	<script src="jsWebPasswordStrength_widget.js"></script>
+	<style>
+		.demo {
+			padding:10px;
+			border:1px solid #ddd;
+			background:#eee;
+			margin:10px 0;
+		}
+	</style>
+</head>
+<body>
+	<h1>WebPasswordStrength</h1>
+	<p><a href="LICENSE.md">MIT License</a>, <a href="https://github.com/jobyone/WebPasswordStrength">download on GitHub</a></p>
+	
+	<h2>Javascript analysis demo</h2>
+	<p>Demonstrating the data produced by the jsWebPasswordStrength class.</p>
+	<div class="demo">
+		<p><input type="password" id="demo-normal-input" /></p>
+		<p id="demo-normal-output"><em>start typing a password above</em></p>
+		<script>
+			$(function(){
+				var p = new jsWebPasswordStrength();
+				var demoNormal = function () {
+					var result = p.test($("#demo-normal-input").val());
+					var output = "";
+					for (var item in result) {
+						output += "<div><strong>"+item+"</strong> "+result[item]+"</div>";
+					}
+					$("#demo-normal-output").html(output);
 				}
-				$("#demo-normal-output").html(output);
-			}
-			$("#demo-normal-input").keyup(demoNormal).change(demoNormal);
-		});
-	</script>
+				$("#demo-normal-input").keyup(demoNormal).change(demoNormal);
+			});
+		</script>
+	</div>
+
+	<h2>Javascript widget demo</h2>
+	<p>Demonstrating the generation of an interactive widget.</p>
+	<div class="demo">
+		<p><input type="password" id="demo-widget-input" /></p>
+		<script>
+			$(function(){
+				var p = new jsWebPasswordStrength_widget(document.getElementById("demo-widget-input"));
+			});
+		</script>
+	</div>
+
 </body>
 </html>
