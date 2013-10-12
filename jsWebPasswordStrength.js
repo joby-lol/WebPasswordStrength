@@ -137,8 +137,12 @@ jsWebPasswordStrength.prototype.test = function (password)
 	//assign a rating
 	for (var i in this.options.bitstrengths) {
 		if (this.results.score >= this.options.bitstrengths[i].bits/this.results.idealbits*100) {
-			this.results.strength = this.options.bitstrengths[i].name;
-		}else {
+			this.results.scorestrength = this.options.bitstrengths[i].name;
+		}
+		if (this.results.bits >= this.options.bitstrengths[i].bits) {
+			this.results.bitstrength = this.options.bitstrengths[i].name;
+		}
+		if (this.results.bitstrength && this.results.scorestrength) {
 			break;
 		}
 	}
