@@ -31,15 +31,15 @@ function jsWebPasswordStrength(options) {
 				'name':'weak',
 			},
 			{
-				'bits':30,
+				'bits':64,
 				'name':'fair',
 			},
 			{
-				'bits':60,
+				'bits':72,
 				'name':'strong',
 			},
 			{
-				'bits':80,
+				'bits':100,
 				'name':'ideal'
 			}
 		],
@@ -70,17 +70,17 @@ function jsWebPasswordStrength(options) {
 			'lower case letter':{
 				'regex':/[a-z]/,
 				'count':26,
-				'penalty':6
+				'penalty':9.4
 			},
 			'upper case letter':{
 				'regex':/[A-Z]/,
 				'count':26,
-				'penalty':6
+				'penalty':9.4
 			},
 			'number':{
 				'regex':/[0-9]/,
 				'count':10,
-				'penalty':4
+				'penalty':6.6
 			},
 			'whitespace':{
 				'regex':/[ ]/,
@@ -88,7 +88,7 @@ function jsWebPasswordStrength(options) {
 			},
 			'special character':{
 				'regex':/[^a-zA-Z0-9 ]/,
-				'count':191,
+				'count':32,
 				'penalty':10
 			}
 		}
@@ -132,7 +132,7 @@ jsWebPasswordStrength.prototype.test = function (passwordToTest) {
 	//check character categories and compute bit strength
 	for (var cat in this.options.characterCategories) {
 		if (passwordToTest.match(this.options.characterCategories[cat].regex)) {
-			this.results.bitspercharacter += Math.log(this.options.characterCategories[cat].count);
+			this.results.bitspercharacter += Math.log(this.options.characterCategories[cat].count)/Math.log(2);
 		}else if (this.options.characterCategories[cat].penalty) {
 			this.results.suggestions.push('include '+cat+'s');
 			this.results.characterpenalty += this.options.characterCategories[cat].penalty;
