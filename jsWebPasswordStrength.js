@@ -14,8 +14,7 @@
 */
 
 /* jsWebPasswordStrength @constructor */
-function jsWebPasswordStrength(options)
-{
+function jsWebPasswordStrength(options) {
 	var defaults = {
 		/*
 			An array of objects, each defining a break point for how various bit
@@ -46,8 +45,11 @@ function jsWebPasswordStrength(options)
 		],
 		/*
 			An object of objects, each defining a test to be applied to the password
-			Currently only supports regular expressions, but in the future will
-			accept functions as well.
+			Instead of an object, you can also pass in a function, it will be given
+			the password as its first argument, and should return an object with
+			properties 'score' and 'suggestions'
+			Score will be added to the 0-100 score (so make it negative for penalties)
+			Suggestions can be either a single string or an array of multiple strings
 			Should have a meaningful name, since that's what needs to be used
 			when adding and removing them through the interface functions.
 		*/
@@ -119,18 +121,17 @@ function jsWebPasswordStrength(options)
 	}
 }
 
-jsWebPasswordStrength.prototype.test = function (password)
-{
+jsWebPasswordStrength.prototype.test = function (passwordToTest) {
 	this.results = {
 		'bitspercharacter':0,
-		'characters':password.length,
+		'characters':passwordToTest.length,
 		'suggestions':[],
 		'characterpenalty':0,
 		'strength':''
 	};
 	//check character categories and compute bit strength
 	for (var cat in this.options.characterCategories) {
-		if (password.match(this.options.characterCategories[cat].regex)) {
+		if (passwordToTest.match(this.options.characterCategories[cat].regex)) {
 			this.results.bitspercharacter += Math.log(this.options.characterCategories[cat].count);
 		}else if (this.options.characterCategories[cat].penalty) {
 			this.results.suggestions.push('include '+cat+'s');
@@ -144,8 +145,20 @@ jsWebPasswordStrength.prototype.test = function (password)
 	this.results.score = this.results.score>100?100:this.results.score;
 	//run tests and adjust score
 	for (var test in this.options.tests) {
-		if (this.options.tests[test].regex) {
-			if (password.match(this.options.tests[test].regex)) {
+		if (typeof(this.options.tests[test]) == 'function') {
+			var testResult = this.options.tests[test](passwordToTest);
+			this.results.score += testResult.score;
+			if (testResult.suggestions && testResult.score < 0) {
+				if (typeof(testResult.suggestions) == 'string') {
+					this.results.suggestions.push(testResult.suggestions);
+				}else {
+					for (var suggestion in testResult.suggestions) {
+						this.results.suggestions.push(testResult.suggestions[suggestion]);
+					}
+				}
+			}
+		}else if (this.options.tests[test].regex) {
+			if (passwordToTest.match(this.options.tests[test].regex)) {
 				this.results.score += this.options.tests[test].value;
 				this.results.suggestions.push(this.options.tests[test].message);
 			}
@@ -186,5 +199,8 @@ jsWebPasswordStrength.prototype.suggestions = function () {
 }
 jsWebPasswordStrength.prototype.addTest = function (name,test)
 {
-
+	this.options.tests[name] = test;
+}
+jsWebPasswordStrength.prototype.removeTest = function (name) {
+	delete this.options.tests[name];
 }
