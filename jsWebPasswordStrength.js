@@ -164,15 +164,19 @@ jsWebPasswordStrength.prototype.test = function (password)
 		if (this.results.bits >= this.options.bitstrengths[i].bits) {
 			this.results.bitstrength = this.options.bitstrengths[i].name;
 		}
-		if (this.results.bitstrength && this.results.scorestrength) {
-			break;
-		}
 	}
 	//return results
 	return this.results;
 }
 jsWebPasswordStrength.prototype.strength = function () {
-	return this.results.strength;
+	//return score strength by default, so that penalties are meaningful
+	return this.results.scorestrength;
+}
+jsWebPasswordStrength.prototype.bitstrength = function () {
+	return this.results.bitstrength;
+}
+jsWebPasswordStrength.prototype.scorestrength = function () {
+	return this.results.scorestrength;
 }
 jsWebPasswordStrength.prototype.score = function () {
 	return this.results.score;
@@ -180,7 +184,7 @@ jsWebPasswordStrength.prototype.score = function () {
 jsWebPasswordStrength.prototype.suggestions = function () {
 	return this.results.suggestions;
 }
-jsWebPasswordStrength.prototype.addTest = function (test)
+jsWebPasswordStrength.prototype.addTest = function (name,test)
 {
 
 }
