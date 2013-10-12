@@ -21,10 +21,10 @@
 	<h2>Javascript widget demo</h2>
 	<p>Demonstrating the generation of an interactive widget.</p>
 	<div class="demo">
-		<p><input type="password" id="demo-widget-input" /></p>
+		<p><input type="password" id="demo-input" /></p>
 		<script>
 			$(function(){
-				var p = new jsWebPasswordStrength_widget(document.getElementById("demo-widget-input"));
+				var p = new jsWebPasswordStrength_widget(document.getElementById("demo-input"));
 			});
 		</script>
 	</div>
@@ -32,20 +32,19 @@
 	<h2>Javascript analysis demo</h2>
 	<p>Demonstrating the raw data produced by the jsWebPasswordStrength class.</p>
 	<div class="demo">
-		<p><input type="password" id="demo-normal-input" /></p>
 		<p id="demo-normal-output"><em>start typing a password above</em></p>
 		<script>
 			$(function(){
 				var p = new jsWebPasswordStrength();
 				var demoNormal = function () {
-					var result = p.test($("#demo-normal-input").val());
+					var result = p.test($("#demo-input").val());
 					var output = "";
 					for (var item in result) {
-						output += "<div><strong>"+item+"</strong> "+result[item]+"</div>";
+						output += "<div><strong>"+item+"</strong>: "+result[item]+"</div>";
 					}
 					$("#demo-normal-output").html(output);
 				}
-				$("#demo-normal-input").keyup(demoNormal).change(demoNormal);
+				$("#demo-input").keyup(demoNormal).change(demoNormal);
 			});
 		</script>
 	</div>
