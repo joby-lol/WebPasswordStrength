@@ -1,0 +1,41 @@
+/*
+default widget
+*/
+.jswps_widget_default {
+	font-size:75%;
+	display:block;
+	text-align:center;
+	font-family:"Arial",sans-serif;
+	background:#fff;
+	font-weight:bold;
+}
+.jswps_widget_default .jswps_widget_default_progressbar_inner.active {
+	height:0.5em;
+	background:#ccc;
+	margin:0 auto;
+	transition:width 0.25s linear;
+}
+.jswps_widget_default.weak {
+	color:#900;
+}
+.jswps_widget_default.weak .jswps_widget_default_progressbar_inner.active {
+	background:#900;
+}
+.jswps_widget_default.fair {
+	color:#f90;
+}
+.jswps_widget_default.fair .jswps_widget_default_progressbar_inner.active {
+	background:#f90;
+}
+.jswps_widget_default.strong {
+	color:#090;
+}
+.jswps_widget_default.strong .jswps_widget_default_progressbar_inner.active {
+	background:#090;
+}
+.jswps_widget_default.ideal {
+	color:#0c0;
+}
+.jswps_widget_default.ideal .jswps_widget_default_progressbar_inner.active {
+	background:#0c0;
+}
