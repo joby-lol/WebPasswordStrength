@@ -17,7 +17,18 @@
 <body>
 	<h1>WebPasswordStrength</h1>
 	<p><a href="LICENSE.md">MIT License</a>, <a href="https://github.com/jobyone/WebPasswordStrength">download on GitHub</a></p>
-	
+
+	<h2>Javascript widget demo</h2>
+	<p>Demonstrating the generation of an interactive widget.</p>
+	<div class="demo">
+		<p><input type="password" id="demo-widget-input" /></p>
+		<script>
+			$(function(){
+				var p = new jsWebPasswordStrength_widget(document.getElementById("demo-widget-input"));
+			});
+		</script>
+	</div>
+
 	<h2>Javascript analysis demo</h2>
 	<p>Demonstrating the raw data produced by the jsWebPasswordStrength class.</p>
 	<div class="demo">
@@ -35,17 +46,6 @@
 					$("#demo-normal-output").html(output);
 				}
 				$("#demo-normal-input").keyup(demoNormal).change(demoNormal);
-			});
-		</script>
-	</div>
-
-	<h2>Javascript widget demo</h2>
-	<p>Demonstrating the generation of an interactive widget.</p>
-	<div class="demo">
-		<p><input type="password" id="demo-widget-input" /></p>
-		<script>
-			$(function(){
-				var p = new jsWebPasswordStrength_widget(document.getElementById("demo-widget-input"));
 			});
 		</script>
 	</div>
