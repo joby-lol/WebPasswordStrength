@@ -126,8 +126,7 @@ jsWebPasswordStrength.prototype.test = function (passwordToTest) {
 		'bitspercharacter':0,
 		'characters':passwordToTest.length,
 		'suggestions':[],
-		'characterpenalty':0,
-		'strength':''
+		'characterpenalty':0
 	};
 	//check character categories and compute bit strength
 	for (var cat in this.options.characterCategories) {
