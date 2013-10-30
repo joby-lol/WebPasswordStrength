@@ -4,7 +4,7 @@ View a demo: http://demo.byjoby.net/WebPasswordStrength/demo.html
 
 A set of JavaScript tools for rating and displaying the ratings of passwords in HTML forms.
 
-All tools are designed to be truly modern, using the latest JavaScript APIs. Everything is designed to make a little impact as possible on the surrounding page and styling, and in the case of UI elements to fail gracefully by simply not impacting the page at all.
+All tools are designed to be truly modern, using the latest JavaScript APIs. Everything is designed to make as little impact as possible on the surrounding page and styling, and in the case of UI elements to fail gracefully by simply not impacting the page at all.
 
 ##Usage
 You'll need to somehow include the contents of both js files and the css file (and minify them for production, because we're not animals).
