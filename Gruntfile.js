@@ -5,7 +5,11 @@ module.exports = function(grunt) {
 
 		watch: {
 			js: {
-				files:['source/js/jsWebPasswordStrength.js','source/js/jsWebPasswordStrength_widget.js'],
+				files:[
+					'source/js/jsWebPasswordStrength.js',
+					'source/js/jsWebPasswordStrength.widget.js',
+					'source/js/jsWebPasswordStrength.jQuery.js'
+				],
 				tasks:['uglify']
 			}
 		},
@@ -16,8 +20,18 @@ module.exports = function(grunt) {
 			},
 			build: {
 				files: {
-					'jsWebPasswordStrength.min.js':['source/js/jsWebPasswordStrength.js'],
-					'jsWebPasswordStrength_widget.min.js':['source/js/jsWebPasswordStrength.js','source/js/jsWebPasswordStrength_widget.js']
+					'jsWebPasswordStrength.min.js':[
+						'source/js/jsWebPasswordStrength.js'
+					],
+					'jsWebPasswordStrength.widget.min.js':[
+						'source/js/jsWebPasswordStrength.js',
+						'source/js/jsWebPasswordStrength.widget.js'
+					],
+					'jsWebPasswordStrength.jQuery.min.js':[
+						'source/js/jsWebPasswordStrength.js',
+						'source/js/jsWebPasswordStrength.widget.js',
+						'source/js/jsWebPasswordStrength.jQuery.js'
+					]
 				}
 			}
 		}
