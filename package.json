@@ -1,6 +1,6 @@
 {
   "name": "WebPasswordStrength",
-  "version": "0.0.0-dev",
+  "version": "0.9.0-beta",
   "author": "Joby Elliott <code@byjoby.net> (http://byjoby.com)",
   "license": "MIT",
   "licenseText": "Permission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the 'Software'), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.",
