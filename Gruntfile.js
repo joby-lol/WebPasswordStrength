@@ -11,6 +11,10 @@ module.exports = function(grunt) {
 					'source/js/jsWebPasswordStrength.jQuery.js'
 				],
 				tasks:['uglify']
+			},
+			css: {
+				files:['source/css/*'],
+				tasks:['cssmin']
 			}
 		},
 
@@ -34,10 +38,20 @@ module.exports = function(grunt) {
 					]
 				}
 			}
+		},
+
+		cssmin: {
+			build: {
+				files: {
+					'jsWebPasswordStrength.min.css':[
+						'source/css/*'
+					],
+				}
+			}
 		}
 
 	});
 
 	//default tasks
-	grunt.registerTask('default',['uglify']);
+	grunt.registerTask('default',['uglify','cssmin']);
 }

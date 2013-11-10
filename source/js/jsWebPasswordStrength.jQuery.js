@@ -15,7 +15,7 @@
 */
 (function($){
 	$.fn.WebPasswordStrength = function(options) {
-		$(this).data('WebPasswordStrength') = new WebPasswordStrength(this,options);
+		$(this).data('WebPasswordStrength') = new WebPasswordStrength_widget(this,options);
 		return this;
 	}
 }(jQuery));
